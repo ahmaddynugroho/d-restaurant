@@ -1,3 +1,10 @@
-img {
-  display: block;
+#skip-to-content {
+  position: absolute;
+  padding: 1rem 4rem;
+  top: -100%;
+  background-color: aqua;
+}
+
+#skip-to-content:focus {
+  top: 0;
 }
