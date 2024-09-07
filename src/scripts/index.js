@@ -21,15 +21,14 @@ showNavMenuButton.addEventListener("click", (e) => {
 fetch("./data/DATA.json")
   .then((res) => res.json())
   .then(({ restaurants }) => {
-    /** @type {HTMLDivElement} */
     const restaurantList = q("#restaurant-list");
     restaurants.forEach((r) => {
       restaurantList.innerHTML += /*html*/ `
-<div id="restaurant">
-  <p>${r.name}</p>
-  <p>${r.rating}⭐</p>
-  <img src="${r.pictureId}" alt="${r.name} image">
-</div>
+        <div id="restaurant">
+          <p>${r.name}</p>
+          <p>${r.rating}⭐</p>
+          <img src="${r.pictureId}" alt="${r.name} image">
+        </div>
       `;
     });
   });
