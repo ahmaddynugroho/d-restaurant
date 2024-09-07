@@ -45,6 +45,16 @@ nav {
   }
 }
 
+/* main content restaurant list */
+#restaurant-list {
+  display: grid;
+  gap: 1rem;
+}
+#restaurant {
+  padding: 0.5rem;
+  background-color: #eee;
+}
+
 @media screen and (min-width: 1200px) {
   .container {
     max-width: 1000px;
@@ -64,5 +74,9 @@ nav {
     a {
       display: inline-block;
     }
+  }
+
+  #restaurant-list {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
