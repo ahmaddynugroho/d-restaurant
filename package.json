@@ -37,5 +37,10 @@
   },
   "dependencies": {
     "regenerator-runtime": "^0.14.0"
+  },
+  "standard": {
+    "ignore": [
+      "tests"
+    ]
   }
 }
