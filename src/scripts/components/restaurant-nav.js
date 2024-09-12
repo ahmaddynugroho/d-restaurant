@@ -1,3 +1,5 @@
+import { q, qa } from '../utils/query-selector'
+
 class RestaurantNav extends HTMLElement {
   constructor () {
     super()
@@ -16,3 +18,17 @@ class RestaurantNav extends HTMLElement {
 }
 
 customElements.define('restaurant-nav', RestaurantNav)
+
+/** @type {HTMLButtonElement} */
+const showNavMenuButton = q('#show-menu')
+
+/** @type {NodeListOf<HTMLAnchorElement>} */
+const navLinks = qa('nav a')
+
+showNavMenuButton.addEventListener('click', e => {
+  navLinks.forEach(e => {
+    const currentDisplay = e.style.display
+    e.style.display =
+      currentDisplay === 'inline-block' ? 'none' : 'inline-block'
+  })
+})

@@ -1,17 +1,5 @@
-import { q, qa } from '../utils/query-selector'
+import { q } from '../utils/query-selector'
 import { GET_RESTAURANT_API, GET_RESTAURANT_IMAGE_API } from '../config.js'
-
-/** @type {HTMLButtonElement} */
-const showNavMenuButton = q('#show-menu')
-/** @type {NodeListOf<HTMLAnchorElement>} */
-const navLinks = qa('nav a')
-showNavMenuButton.addEventListener('click', e => {
-  navLinks.forEach(e => {
-    const currentDisplay = e.style.display
-    e.style.display =
-      currentDisplay === 'inline-block' ? 'none' : 'inline-block'
-  })
-})
 
 async function getRestaurantList () {
   /**
