@@ -1,3 +1,5 @@
+import { q } from '../utils/query-selector.js'
+
 class LoadingIndicator extends HTMLElement {
   constructor () {
     super()
@@ -10,3 +12,15 @@ class LoadingIndicator extends HTMLElement {
 }
 
 customElements.define('loading-indicator', LoadingIndicator)
+
+export function showLoadingElement () {
+  /** @type {HTMLDivElement} */
+  const loadingElement = q('#loading')
+  loadingElement.style.display = 'block'
+}
+
+export function hideLoadingElement () {
+  /** @type {HTMLDivElement} */
+  const loadingElement = q('#loading')
+  loadingElement.style.display = 'none'
+}

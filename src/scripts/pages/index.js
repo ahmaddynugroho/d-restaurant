@@ -1,9 +1,15 @@
 import { q } from '../utils/query-selector'
 import { GET_RESTAURANT_API, GET_RESTAURANT_IMAGE_API } from '../config.js'
+import {
+  hideLoadingElement,
+  showLoadingElement
+} from '../components/loading.js'
 
+showLoadingElement()
 const restaurants = await fetchRestaurantList()
 renderJumbotron(restaurants)
-getRestaurantList(restaurants)
+renderRestaurantList(restaurants)
+hideLoadingElement()
 
 /**
  * @typedef {{
@@ -38,11 +44,8 @@ function renderJumbotron (restaurants) {
  *
  * @param {Array<Restaurant>} restaurants
  */
-async function getRestaurantList (restaurants) {
-  /** @type {HTMLDivElement} */ const loadingElement = q('#loading')
+async function renderRestaurantList (restaurants) {
   const restaurantListTemplate = q('#restaurant-list')
-
-  loadingElement.style.display = 'none'
 
   restaurants.forEach(r => {
     restaurantListTemplate.innerHTML += /* html */ `
