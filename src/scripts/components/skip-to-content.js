@@ -3,7 +3,7 @@ class SkipToContent extends HTMLElement {
     super()
     const mainContentId = this.getAttribute('main-content-id')
     this.innerHTML = /* html */ `
-      <a id='skip-to-content' href='#${mainContentId}'> Skip to content awoaowk </a>
+      <a id='skip-to-content' href='#${mainContentId}'> Skip to content </a>
     `
   }
 }
