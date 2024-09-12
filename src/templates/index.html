@@ -6,28 +6,14 @@
     <title>Restaurant Apps</title>
   </head>
   <body class="container">
-    <a id="skip-to-content" href="#restaurant-list">Skip to content</a>
-
-    <nav>
-      <div id="nav-drawer">
-        <span>RESTO ISEKAI</span>
-        <button id="show-menu">Menu</button>
-      </div>
-      <a href="/">Home</a>
-      <a href="#">Favorite</a>
-      <a href="https://github.com/ahmaddynugroho" target="_blank">About Us</a>
-    </nav>
-
-    <p id="loading" style="background-color: bisque">
-      Sedang mengambil data dari server...
-    </p>
+    <skip-to-content main-content-id="restaurant-list"></skip-to-content>
+    <restaurant-nav></restaurant-nav>
+    <loading-indicator></loading-indicator>
 
     <img id="jumbotron" style="margin-bottom: 1rem; display: none" />
-
     <h1>Explore Restaurant</h1>
-
     <div id="restaurant-list"></div>
 
-    <footer>Copyright@2024 RESTO ISEKAI</footer>
+    <restaurant-footer></restaurant-footer>
   </body>
 </html>
