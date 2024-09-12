@@ -1,10 +1,7 @@
 import 'regenerator-runtime' /* for async await transpile */
 import '../styles/main.css'
 import { q, qa } from './utils/query-selector'
-
-const BASE_API = 'https://restaurant-api.dicoding.dev'
-const GET_RESTAURANT_API = `${BASE_API}/list`
-const GET_RESTAURANT_IMAGE_API = `${BASE_API}/images`
+import { GET_RESTAURANT_API, GET_RESTAURANT_IMAGE_API } from './config.js'
 
 /** @type {HTMLButtonElement} */
 const showNavMenuButton = q('#show-menu')
