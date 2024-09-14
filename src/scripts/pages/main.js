@@ -6,6 +6,12 @@ import {
 } from '../components/loading.js'
 
 export const renderMainPage = async () => {
+  const appContainer = q('#app')
+  appContainer.innerHTML = /* html */ `
+    <img id="jumbotron" style="margin-bottom: 1rem; display: none" />
+    <h1>Explore Restaurant</h1>
+    <div id="restaurant-list"></div>
+  `
   showLoadingElement()
   const restaurants = await fetchRestaurantList()
   renderJumbotron(restaurants)
