@@ -5,11 +5,13 @@ import {
   showLoadingElement
 } from '../components/loading.js'
 
-showLoadingElement()
-const restaurants = await fetchRestaurantList()
-renderJumbotron(restaurants)
-renderRestaurantList(restaurants)
-hideLoadingElement()
+export const renderMainPage = async () => {
+  showLoadingElement()
+  const restaurants = await fetchRestaurantList()
+  renderJumbotron(restaurants)
+  renderRestaurantList(restaurants)
+  hideLoadingElement()
+}
 
 /**
  * @typedef {{
