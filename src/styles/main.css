@@ -3,10 +3,6 @@ img {
   display: block;
   width: 100%;
 }
-button,
-a {
-  padding: 1rem 1rem;
-}
 
 /* body container */
 .container {
@@ -35,6 +31,7 @@ nav {
     display: none;
     margin-right: 0.25rem;
     background-color: #ddd;
+    padding: 1rem 1rem;
   }
   #nav-drawer {
     display: flex;
