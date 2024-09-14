@@ -1,4 +1,4 @@
-class SkipToContent extends HTMLElement {
+class SkipToContent extends window.HTMLElement {
   constructor () {
     super()
     const mainContentId = this.getAttribute('main-content-id')
@@ -8,4 +8,4 @@ class SkipToContent extends HTMLElement {
   }
 }
 
-customElements.define('skip-to-content', SkipToContent)
+window.customElements.define('skip-to-content', SkipToContent)

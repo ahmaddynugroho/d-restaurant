@@ -1,6 +1,6 @@
 import { q } from '../utils/query-selector.js'
 
-class LoadingIndicator extends HTMLElement {
+class LoadingIndicator extends window.HTMLElement {
   constructor () {
     super()
     this.innerHTML = /* html */ `
@@ -11,7 +11,7 @@ class LoadingIndicator extends HTMLElement {
   }
 }
 
-customElements.define('loading-indicator', LoadingIndicator)
+window.customElements.define('loading-indicator', LoadingIndicator)
 
 export function showLoadingElement () {
   /** @type {HTMLDivElement} */

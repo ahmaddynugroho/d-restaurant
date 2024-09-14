@@ -1,6 +1,6 @@
 import { q, qa } from '../utils/query-selector'
 
-class RestaurantNav extends HTMLElement {
+class RestaurantNav extends window.HTMLElement {
   constructor () {
     super()
     this.innerHTML = /* html */ `
@@ -17,7 +17,7 @@ class RestaurantNav extends HTMLElement {
   }
 }
 
-customElements.define('restaurant-nav', RestaurantNav)
+window.customElements.define('restaurant-nav', RestaurantNav)
 
 /** @type {HTMLButtonElement} */
 const showNavMenuButton = q('#show-menu')

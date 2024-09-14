@@ -1,4 +1,4 @@
-class RestaurantFooter extends HTMLElement {
+class RestaurantFooter extends window.HTMLElement {
   constructor () {
     super()
     this.innerHTML = /* html */ `
@@ -7,4 +7,4 @@ class RestaurantFooter extends HTMLElement {
   }
 }
 
-customElements.define('restaurant-footer', RestaurantFooter)
+window.customElements.define('restaurant-footer', RestaurantFooter)
