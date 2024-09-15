@@ -5,15 +5,25 @@ import {
   showLoadingElement
 } from '../components/loading.js'
 
-showLoadingElement()
-const restaurants = await fetchRestaurantList()
-renderJumbotron(restaurants)
-renderRestaurantList(restaurants)
-hideLoadingElement()
+const template = /* html */ `
+    <img id="jumbotron" style="margin-bottom: 1rem; display: none" />
+    <h1>Explore Restaurant</h1>
+    <div id="restaurant-list"></div>
+  `
+
+export const renderMainPage = async () => {
+  const appContainer = q('#app')
+  appContainer.innerHTML = template
+  showLoadingElement()
+  const restaurants = await fetchRestaurantList()
+  renderJumbotron(restaurants)
+  renderRestaurantList(restaurants)
+  hideLoadingElement()
+}
 
 /**
  * @typedef {{
- *  name: string, pictureId: string, rating: number
+ *  id: string, name: string, pictureId: string, rating: number
  * }} Restaurant
  */
 
@@ -49,11 +59,13 @@ async function renderRestaurantList (restaurants) {
 
   restaurants.forEach(r => {
     restaurantListTemplate.innerHTML += /* html */ `
+    <a href="#/detail/${r.id}">
       <div id="restaurant">
         <p>${r.name}</p>
         <p>${r.rating}⭐</p>
         <img src="${GET_RESTAURANT_IMAGE_API}/small/${r.pictureId}" alt="${r.name} image">
       </div>
+    </a>
     `
   })
 }

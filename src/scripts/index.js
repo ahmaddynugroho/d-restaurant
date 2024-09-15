@@ -6,4 +6,4 @@ import './components/restaurant-nav.js'
 import './components/restaurant-footer.js'
 import './components/loading.js'
 
-import './pages/index.js'
+import './router.js'
