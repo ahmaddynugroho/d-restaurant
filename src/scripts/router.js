@@ -22,7 +22,12 @@ function renderPage () {
     if (hashParts.length !== routeParts.length) return
 
     const paramIndex = routeParts.findIndex(v => v.includes(':'))
-    if (paramIndex === -1) return routes[route]()
+    if (paramIndex === -1) {
+      if (hash !== route) {
+        window.location.href = '#/'
+      }
+      return routes[route]()
+    }
 
     const isCorrectPath = routeParts.slice(0, -1).reduce((a, c, i) => {
       if (!a) return

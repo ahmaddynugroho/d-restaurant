@@ -6,13 +6,11 @@ class RestaurantNav extends window.HTMLElement {
     this.innerHTML = /* html */ `
       <nav>
         <div id="nav-drawer">
-            <a href="#/">
-              <span>RESTO ISEKAI</span>
-            </a>
+            <span>RESTO ISEKAI</span>
             <button id="show-menu">Menu</button>
         </div>
-        <a href="/">Home</a>
-        <a href="#">Favorite</a>
+        <a href="#/">Home</a>
+        <a href="#/favorite">Favorite</a>
         <a href="https://github.com/ahmaddynugroho" target="_blank">About Us</a>
       </nav>
     `
