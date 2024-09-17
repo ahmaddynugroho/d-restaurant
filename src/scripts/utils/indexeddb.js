@@ -35,10 +35,10 @@ export async function initFavoriteButton (buttonId, restaurant) {
   renderFavoriteButtonText(restaurant.id, favButton)
   favButton.addEventListener('click', async e => {
     if (isExist) {
-      await deleteData(db, restaurant.id)
+      await deleteData(restaurant.id)
       console.debug('db: deleted', restaurant.id, restaurant.name)
     } else {
-      await addData(db, restaurant)
+      await addData(restaurant)
       console.debug('db: added', restaurant.id, restaurant.name)
     }
     isExist = !isExist
@@ -55,7 +55,7 @@ async function renderFavoriteButtonText (restaurantId, favButton) {
   }
 }
 
-export async function getAllRestaurant() {
+export async function getAllRestaurant () {
   const tx = await db.transaction(storeName, 'readwrite')
   return (await Promise.all([tx.store.getAll(), tx.done]))[0]
 }
