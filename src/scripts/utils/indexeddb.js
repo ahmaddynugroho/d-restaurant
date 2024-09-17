@@ -18,12 +18,12 @@ async function useDB (dbName, storeName) {
   })
 }
 
-async function addData (db, data) {
+async function addData (data) {
   const tx = await db.transaction(storeName, 'readwrite')
   return await Promise.all([tx.store.add(data), tx.done])
 }
 
-async function deleteData (db, dataId) {
+async function deleteData (dataId) {
   const tx = await db.transaction(storeName, 'readwrite')
   return await Promise.all([tx.store.delete(dataId), tx.done])
 }
@@ -53,4 +53,9 @@ async function renderFavoriteButtonText (restaurantId, favButton) {
   } else {
     favButton.innerHTML = 'Add to favorite'
   }
+}
+
+export async function getAllRestaurant() {
+  const tx = await db.transaction(storeName, 'readwrite')
+  return (await Promise.all([tx.store.getAll(), tx.done]))[0]
 }
