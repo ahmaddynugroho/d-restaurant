@@ -4,7 +4,6 @@ import { renderMainPage } from './pages/main.js'
 
 const routes = {
   '#/': renderMainPage,
-  '#/awikwok/:id': renderMainPage,
   '#/detail/:id': renderDetailPage,
   '#/favorite': renderFavoritePage
 }

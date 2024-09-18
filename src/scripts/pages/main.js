@@ -12,12 +12,15 @@ const template = /* html */ `
   `
 
 export const renderMainPage = async () => {
+  showLoadingElement()
+
   const appContainer = q('#app')
   appContainer.innerHTML = template
-  showLoadingElement()
+
   const restaurants = await fetchRestaurantList()
   renderJumbotron(restaurants)
   renderRestaurantList(restaurants)
+
   hideLoadingElement()
 }
 
