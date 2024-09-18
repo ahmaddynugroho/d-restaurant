@@ -6,9 +6,10 @@ import { q } from '../utils/query-selector'
 const template = restaurant => /* html */ `
   <h1>${restaurant.name} (${restaurant.rating}⭐)</h1>
   <button id="add-or-remove-fav">fav button</button>
-  <img src="${GET_RESTAURANT_IMAGE_API}/large/${restaurant.pictureId}" alt="${
-  restaurant.name
-} image" />
+  <img
+    src="${GET_RESTAURANT_IMAGE_API}/large/${restaurant.pictureId}"
+    alt="${restaurant.name} image"
+  />
   <p>City: ${restaurant.city}</p>
   <p>Address: ${restaurant.address}</p>
   <p>Description: ${restaurant.description}</p>
