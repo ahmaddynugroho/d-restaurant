@@ -1,10 +1,12 @@
 import { renderDetailPage } from './pages/detail.js'
+import { renderFavoritePage } from './pages/favorite.js'
 import { renderMainPage } from './pages/main.js'
 
 const routes = {
   '#/': renderMainPage,
   '#/awikwok/:id': renderMainPage,
-  '#/detail/:id': renderDetailPage
+  '#/detail/:id': renderDetailPage,
+  '#/favorite': renderFavoritePage
 }
 
 renderPage()
@@ -15,27 +17,35 @@ window.addEventListener('hashchange', () => {
 
 function renderPage () {
   const hash = window.location.hash || '#/'
-  const hashParts = hash.split('/')
 
-  Object.keys(routes).forEach(route => {
-    const routeParts = route.split('/')
-    if (hashParts.length !== routeParts.length) return
-
-    const paramIndex = routeParts.findIndex(v => v.includes(':'))
-    if (paramIndex === -1) {
-      if (hash !== route) {
-        window.location.href = '#/'
+  for (const r in routes) {
+    if (Object.prototype.hasOwnProperty.call(routes, r)) {
+      const renderFn = routes[r]
+      if (!hash.includes(':') && hash === r) {
+        renderFn()
+        break
       }
-      return routes[route]()
+      const rParts = r.split('/')
+      const hParts = hash.split('/')
+
+      let paramIndex = -1
+      let isValidRoute = true
+      for (let i = 0; i < rParts.length; i++) {
+        const rp = rParts[i]
+
+        if (rp.includes(':')) {
+          paramIndex = i
+          break
+        }
+        if (rp !== hParts[i]) {
+          isValidRoute = false
+          break
+        }
+      }
+      if (!isValidRoute) continue
+
+      renderFn(hParts[paramIndex])
+      break
     }
-
-    const isCorrectPath = routeParts.slice(0, -1).reduce((a, c, i) => {
-      if (!a) return
-      return c === hashParts[i]
-    }, true)
-    if (!isCorrectPath) return
-
-    routes[route](hashParts[paramIndex])
-    console.debug('rendering', route, 'with param', hashParts[paramIndex])
-  })
+  }
 }

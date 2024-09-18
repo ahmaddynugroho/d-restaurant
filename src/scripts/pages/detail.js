@@ -1,9 +1,11 @@
 import { hideLoadingElement, showLoadingElement } from '../components/loading'
 import { GET_RESTAURANT_DETAIL_API, GET_RESTAURANT_IMAGE_API } from '../config'
+import { initFavoriteButton } from '../utils/indexeddb'
 import { q } from '../utils/query-selector'
 
 const template = restaurant => /* html */ `
   <h1>${restaurant.name} (${restaurant.rating}⭐)</h1>
+  <button id="add-or-remove-fav">fav button</button>
   <img src="${GET_RESTAURANT_IMAGE_API}/large/${restaurant.pictureId}" alt="${
   restaurant.name
 } image" />
@@ -34,6 +36,8 @@ export async function renderDetailPage (id) {
   const restaurantDetail = await fetchDetail(id)
 
   appContainer.innerHTML = template(restaurantDetail)
+
+  initFavoriteButton('#add-or-remove-fav', restaurantDetail)
 
   hideLoadingElement()
 }
