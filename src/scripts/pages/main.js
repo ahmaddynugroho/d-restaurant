@@ -6,7 +6,7 @@ import {
 } from '../components/loading.js'
 
 const template = /* html */ `
-    <img id="jumbotron" style="margin-bottom: 1rem; display: none" />
+    <div id="jumbotron"></div>
     <h1>Explore Restaurant</h1>
     <div id="restaurant-list"></div>
   `
@@ -48,9 +48,17 @@ function renderJumbotron (restaurants) {
   /** @type {HTMLImageElement} */
   const jumbotronElement = q('#jumbotron')
 
-  jumbotronElement.src = `${GET_RESTAURANT_IMAGE_API}/small/${restaurants[0].pictureId}`
-  jumbotronElement.alt = `${restaurants[0].name} image`
-  jumbotronElement.style.display = 'block'
+  jumbotronElement.innerHTML = /* html */ `
+    <picture>
+      <source media="(max-width: 768px)" data-srcset="${GET_RESTAURANT_IMAGE_API}/small/${restaurants[0].pictureId} 768w">
+      <source media="(max-width: 1000px)" data-srcset="${GET_RESTAURANT_IMAGE_API}/medium/${restaurants[0].pictureId} 1000w">
+      <img
+        data-srcset="${GET_RESTAURANT_IMAGE_API}/large/${restaurants[0].pictureId} 1200w"
+        class="lazyload"
+        alt="${restaurants[0].name} image"
+      />
+    </picture>
+  `
 }
 
 /**
@@ -66,7 +74,15 @@ async function renderRestaurantList (restaurants) {
       <div id="restaurant">
         <p>${r.name}</p>
         <p>${r.rating}⭐</p>
-        <img src="${GET_RESTAURANT_IMAGE_API}/small/${r.pictureId}" alt="${r.name} image">
+        <picture>
+          <source media="(max-width: 768px)" data-srcset="${GET_RESTAURANT_IMAGE_API}/small/${r.pictureId} 768w">
+          <source media="(max-width: 1000px)" data-srcset="${GET_RESTAURANT_IMAGE_API}/medium/${r.pictureId} 1000w">
+          <img
+            data-srcset="${GET_RESTAURANT_IMAGE_API}/small/${r.pictureId} 1200w"
+            class="lazyload"
+            alt="${r.name} image"
+          />
+        </picture>
       </div>
     </a>
     `
