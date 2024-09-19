@@ -7,5 +7,5 @@ import './components/restaurant-footer.js'
 import './components/loading.js'
 
 import './router.js'
-
 import './utils/indexeddb.js'
+import './sw.js'
