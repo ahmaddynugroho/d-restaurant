@@ -16,7 +16,7 @@ window.addEventListener('load', async () => {
     console.log('service worker not supported')
     return
   }
-  
+
   const wb = new Workbox('./sw.bundle.js')
 
   try {

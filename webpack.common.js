@@ -7,7 +7,7 @@ const { GenerateSW } = require('workbox-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, 'src/scripts/index.js'),
+    app: path.resolve(__dirname, 'src/scripts/index.js')
   },
   output: {
     filename: '[name].bundle.js',
@@ -52,7 +52,7 @@ module.exports = {
       swDest: './sw.bundle.js',
       runtimeCaching: [
         {
-          urlPattern: ({url}) => url.href.startsWith('https://restaurant-api.dicoding.dev'),
+          urlPattern: ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev'),
           handler: 'StaleWhileRevalidate',
           options: {
             cacheName: 'restaurant-api'

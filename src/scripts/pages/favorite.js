@@ -1,11 +1,11 @@
-import { hideLoadingElement, showLoadingElement } from "../components/loading";
-import { GET_RESTAURANT_IMAGE_API } from "../config";
-import { getAllRestaurant } from "../utils/indexeddb";
-import { q } from "../utils/query-selector";
+import { hideLoadingElement, showLoadingElement } from '../components/loading'
+import { GET_RESTAURANT_IMAGE_API } from '../config'
+import { getAllRestaurant } from '../utils/indexeddb'
+import { q } from '../utils/query-selector'
 
-export async function renderFavoritePage() {
+export async function renderFavoritePage () {
   showLoadingElement()
-  
+
   const appContainer = q('#app')
   appContainer.innerHTML = /* html */ `
     <h1>Favorite Restaurant</h1>
