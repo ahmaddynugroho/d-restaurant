@@ -61,10 +61,7 @@ class FavoriteButton {
     if (await this.isFavorite()) {
       await this._db.delete(this._detail.id)
     } else {
-      await this._db.add({
-        id: this._detail.id,
-        name: this._detail.name
-      })
+      await this._db.add(this._detail)
     }
   }
 }
@@ -85,7 +82,10 @@ export async function renderDetailPage (id) {
   })
   await favDB.initDB()
   await favBtn.initButton()
-  // initFavoriteButton('#add-or-remove-fav', restaurantDetail)
+  
+  window.addEventListener('hashchange', () => {
+    favDB.close()
+  })
 
   hideLoadingElement()
 }

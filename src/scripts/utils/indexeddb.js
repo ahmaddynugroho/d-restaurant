@@ -77,6 +77,10 @@ export class FavoriteDB {
     })
   }
 
+  close () {
+    this._db.close()
+  }
+
   _writeTx () {
     return this._db.transaction(this._storeName, 'readwrite')
   }
@@ -86,16 +90,22 @@ export class FavoriteDB {
     const res = await Promise.all([tx.store.add(data), tx.done])
     return res[0]
   }
-  
+
   async delete (id) {
     const tx = this._writeTx()
     const res = await Promise.all([tx.store.delete(id), tx.done])
     return res[0]
   }
-  
-  async get(id) {
+
+  async get (id) {
     const tx = this._writeTx()
     const res = await Promise.all([tx.store.get(id), tx.done])
+    return res[0]
+  }
+
+  async getAll () {
+    const tx = this._writeTx()
+    const res = await Promise.all([tx.store.getAll(), tx.done])
     return res[0]
   }
 }
