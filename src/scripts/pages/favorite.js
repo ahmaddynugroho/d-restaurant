@@ -1,6 +1,6 @@
 import { hideLoadingElement, showLoadingElement } from '../components/loading'
 import { GET_RESTAURANT_IMAGE_API } from '../config'
-import { getAllRestaurant } from '../utils/indexeddb'
+import { FavoriteDB, getAllRestaurant } from '../utils/indexeddb'
 import { q } from '../utils/query-selector'
 
 export async function renderFavoritePage () {
@@ -12,8 +12,12 @@ export async function renderFavoritePage () {
     <div id="restaurant-list"></div>
 `
   const restaurantContainer = q('#restaurant-list')
-  const restaurants = await getAllRestaurant()
+  const favDB = new FavoriteDB('fav-db', 'fav-store')
+  await favDB.initDB()
+  const restaurants = await favDB.getAll()
   renderRestaurantList(restaurantContainer, restaurants)
+
+  favDB.close()
 
   hideLoadingElement()
 }

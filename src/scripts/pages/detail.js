@@ -1,6 +1,6 @@
 import { hideLoadingElement, showLoadingElement } from '../components/loading'
 import { GET_RESTAURANT_DETAIL_API, GET_RESTAURANT_IMAGE_API } from '../config'
-import { initFavoriteButton } from '../utils/indexeddb'
+import { FavoriteDB, initFavoriteButton } from '../utils/indexeddb'
 import { q } from '../utils/query-selector'
 
 const template = restaurant => /* html */ `
@@ -30,6 +30,42 @@ const template = restaurant => /* html */ `
   </ul>
 `
 
+// TODO: refactor this page and favorite page
+class FavoriteButton {
+  constructor (args) {
+    const { detail, buttonId, db } = args
+    this._btn = document.querySelector(buttonId)
+    this._db = db
+    this._detail = detail
+  }
+
+  async initButton () {
+    this._renderButtonText()
+    this._btn.addEventListener('click', async () => {
+      await this._click()
+      this._renderButtonText()
+    })
+  }
+
+  async _renderButtonText () {
+    this._btn.innerHTML = (await this.isFavorite())
+      ? 'Remove from favorite'
+      : 'Add to favorite'
+  }
+
+  isFavorite () {
+    return this._db.get(this._detail.id)
+  }
+
+  async _click () {
+    if (await this.isFavorite()) {
+      await this._db.delete(this._detail.id)
+    } else {
+      await this._db.add(this._detail)
+    }
+  }
+}
+
 export async function renderDetailPage (id) {
   showLoadingElement()
 
@@ -38,7 +74,18 @@ export async function renderDetailPage (id) {
 
   appContainer.innerHTML = template(restaurantDetail)
 
-  initFavoriteButton('#add-or-remove-fav', restaurantDetail)
+  const favDB = new FavoriteDB('fav-db', 'fav-store')
+  const favBtn = new FavoriteButton({
+    buttonId: '#add-or-remove-fav',
+    db: favDB,
+    detail: restaurantDetail
+  })
+  await favDB.initDB()
+  await favBtn.initButton()
+  
+  window.addEventListener('hashchange', () => {
+    favDB.close()
+  })
 
   hideLoadingElement()
 }
