@@ -78,9 +78,8 @@ module.exports = {
       runtimeCaching: [
         {
           urlPattern: ({ url }) =>
-            url.href.startsWith('https://restaurant-api.dicoding.dev'),
-          // handler: 'StaleWhileRevalidate',
-          handler: 'CacheFirst', // prevent getting rate limited from dicoding -_-
+            url.href.includes('restaurant-api.dicoding.dev'),
+          handler: 'StaleWhileRevalidate',
           options: {
             cacheName: 'restaurant-api'
           }
