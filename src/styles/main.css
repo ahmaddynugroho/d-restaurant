@@ -12,7 +12,8 @@ button {
 
 /* body container */
 .container {
-  padding: 1rem;
+  margin: 0;
+  padding: 0;
 }
 
 /* skip to content anchor */
