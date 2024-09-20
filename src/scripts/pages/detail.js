@@ -31,7 +31,7 @@ const template = restaurant => /* html */ `
 `
 
 // TODO: refactor this page and favorite page
-class FavoriteButton {
+export class FavoriteButton {
   constructor (args) {
     const { detail, buttonId, db } = args
     this._btn = document.querySelector(buttonId)
@@ -40,10 +40,10 @@ class FavoriteButton {
   }
 
   async initButton () {
-    this._renderButtonText()
+    await this._renderButtonText()
     this._btn.addEventListener('click', async () => {
       await this._click()
-      this._renderButtonText()
+      await this._renderButtonText()
     })
   }
 
@@ -82,7 +82,7 @@ export async function renderDetailPage (id) {
   })
   await favDB.initDB()
   await favBtn.initButton()
-  
+
   window.addEventListener('hashchange', () => {
     favDB.close()
   })
