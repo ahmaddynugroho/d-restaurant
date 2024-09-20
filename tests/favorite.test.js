@@ -1,21 +1,18 @@
-import { FavoriteButton } from '../src/scripts/pages/detail'
-import { FavoriteDB } from '../src/scripts/utils/indexeddb'
-import { q } from '../src/scripts/utils/query-selector'
+import "fake-indexeddb/auto"
+import { favActions } from "../src/scripts/utils/indexeddb"
 
 describe('Favorite restaurant', () => {
-  it('should be able to favorite a restaurant', async () => {
-    document.querySelector('body').innerHTML = /* html */ `
-      <button id="fav-test">test btn</button>
-    `
-    const favDB = new FavoriteDB('test-fav-db', 'test-fav-store')
-    const favBtn = new FavoriteButton({
-      buttonId: '#fav-test',
-      db: favDB,
-      detail: { id: 'test-id' }
-    })
-    await favDB.initDB()
-    await favBtn.initButton()
-
-    expect(q('#fav-test').innerHTML).toEqual('Add to favorite')
+  it('should be able to add', async () => {
+    await favActions.put({ id: 1 })
+    const savedRes = await favActions.get(1)
+    expect(savedRes).toEqual({ id: 1 })
+  })
+  
+  it('should be able to remove', async () => {
+    await favActions.put({ id: 1 })
+    const savedRes = await favActions.get(1)
+    expect(savedRes).toEqual({ id: 1 })
+    const deletedRes = await favActions.delete(1)
+    expect(deletedRes).toEqual(undefined)
   })
 })
