@@ -79,7 +79,8 @@ module.exports = {
         {
           urlPattern: ({ url }) =>
             url.href.startsWith('https://restaurant-api.dicoding.dev'),
-          handler: 'StaleWhileRevalidate',
+          // handler: 'StaleWhileRevalidate',
+          handler: 'CacheFirst', // prevent getting rate limited from dicoding -_-
           options: {
             cacheName: 'restaurant-api'
           }
