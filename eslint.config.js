@@ -7,6 +7,10 @@ module.exports = [
     rules: {
       'no-unused-vars': 'warn',
       'no-undef': 'warn'
+    },
+    env: {
+      browser: true,
+      node: true
     }
   }
 ]
