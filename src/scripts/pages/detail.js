@@ -40,12 +40,12 @@ export async function renderDetailPage (id) {
 
   const favBtn = document.querySelector('#add-or-remove-fav')
   const isFav = await favActions.get(id)
-  favBtn.textContent = isFav ? 'Remove from favorite' : 'Add from favorite'
+  favBtn.textContent = isFav ? 'Remove from favorite' : 'Add to favorite'
   favBtn.addEventListener('click', async () => {
     const isFav = await favActions.get(id)
     if (isFav) {
       await favActions.delete(id)
-      favBtn.textContent = 'Add from favorite'
+      favBtn.textContent = 'Add to favorite'
     } else {
       await favActions.put(restaurantDetail)
       favBtn.textContent = 'Remove from favorite'
