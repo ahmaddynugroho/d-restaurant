@@ -8,9 +8,11 @@ module.exports = [
       'no-unused-vars': 'warn',
       'no-undef': 'warn'
     },
-    env: {
-      browser: true,
-      node: true
+    languageOptions: {
+      globals: {
+        browser: true,
+        node: true
+      }
     }
   }
 ]
